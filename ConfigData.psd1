@@ -11,15 +11,15 @@ AllNodes = @(
      } 
     @{ 
         NodeName = "DC1"
-		Path = 'C:\DC1.txt'
+	Path = 'F:\DC1.txt'
      }
     @{ 
         NodeName = "DC2"
-		Path = 'C:\DC2.txt'
+	Path = 'F:\DC2.txt'
      }
     @{ 
         NodeName = "MS1"
-		Path = 'C:\MS1.txt'
+	Path = 'F:\MS1.txt'
      }
  )
 } 

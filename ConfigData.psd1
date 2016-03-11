@@ -7,7 +7,7 @@ AllNodes = @(
     @{ 
         NodeName = "*" 
         PSDscAllowPlainTextPassword = $true
-		PSDscAllowDomainUser = $true
+	PSDscAllowDomainUser = $true
      } 
     @{ 
         NodeName = "DC1"

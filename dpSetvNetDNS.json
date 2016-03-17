@@ -40,7 +40,8 @@
         },
         "dhcpOptions": {
           "dnsServers": [
-            "[Parameters('DNSServer1')]"
+            "[Parameters('DNSServer1')]",
+            "[Parameters('DNSServer2')]"
           ]
         },
         "subnets": [

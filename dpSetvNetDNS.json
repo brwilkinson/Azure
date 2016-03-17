@@ -6,10 +6,12 @@
       "type": "string"
     },
     "DNSServer1": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": ""
     },
     "DNSServer2": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": ""
     }
   },
   "variables": {

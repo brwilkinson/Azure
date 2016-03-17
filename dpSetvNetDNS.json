@@ -5,8 +5,8 @@
     "Deployment": {
       "type": "string"
     },
-    "DNSServers": {
-      "type": "array"
+    "DNSServer1": {
+      "type": "string"
     }
   },
   "variables": {

@@ -6,14 +6,10 @@
       "type": "string"
     },
     "DNSServers": {
-      "type": "array",
-      "defaultValue": [
-        "10.0.0.10"
-      ]
+      "type": "array"
     }
   },
   "variables": {
-    // Network
     "snPrefix": "10.0.0.0/16",
     "snName01": "[concat('sn', parameters('Deployment'),'-01')]",
     "snName01Prefix": "10.0.0.0/24",

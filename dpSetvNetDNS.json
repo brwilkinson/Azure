@@ -5,16 +5,14 @@
     "Deployment": {
       "type": "string"
     },
-    "DNSServer1": {
-      "type": "string",
-      "defaultValue": "10.0.0.10"
-    },
-    "DNSServer2": {
-      "type": "string",
-      "defaultValue": "0.0.0.0"
+    "DNSServers": {
+      "type": "array",
+      "defaultValue": [ "10.0.0.10" ]
     }
   },
+
   "variables": {
+    // Network
     "snPrefix": "10.0.0.0/16",
     "snName01": "[concat('sn', parameters('Deployment'),'-01')]",
     "snName01Prefix": "10.0.0.0/24",
@@ -42,8 +40,8 @@
         },
         "dhcpOptions": {
           "dnsServers": [
-            "[Parameters('DNSServer1')]",
-            "[Parameters('DNSServer2')]"
+            "[Parameters('DNSServers')[0]]",
+            "[Parameters('DNSServers')[1]]"
           ]
         },
         "subnets": [

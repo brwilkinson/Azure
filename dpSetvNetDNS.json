@@ -7,11 +7,11 @@
     },
     "DNSServer1": {
       "type": "string",
-      "defaultValue": ""
+      "defaultValue": "10.0.0.10"
     },
     "DNSServer2": {
       "type": "string",
-      "defaultValue": ""
+      "defaultValue": "0.0.0.0"
     }
   },
   "variables": {

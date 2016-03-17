@@ -7,6 +7,9 @@
     },
     "DNSServer1": {
       "type": "string"
+    },
+    "DNSServer2": {
+      "type": "string"
     }
   },
   "variables": {

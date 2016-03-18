@@ -7,7 +7,7 @@
     },
     "DNSServers": {
       "type": "array",
-      "defaultValue": [ "10.0.0.10" ]
+      "defaultValue": [ "10.0.0.10","10.0.0.10" ]
     }
   },
 

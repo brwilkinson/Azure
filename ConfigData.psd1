@@ -7,19 +7,22 @@ AllNodes = @(
     @{ 
         NodeName = "*" 
         PSDscAllowPlainTextPassword = $true
-	PSDscAllowDomainUser = $true
+		PSDscAllowDomainUser = $true
      } 
     @{ 
         NodeName = "DC1"
-	Path = 'F:\DC1.txt'
+		Path = 'C:\DC1.txt'
+		Role = 'PDC'
      }
     @{ 
         NodeName = "DC2"
-	Path = 'F:\DC2.txt'
+		Path = 'C:\DC2.txt'
+		Role = 'DC'
      }
     @{ 
         NodeName = "MS1"
-	Path = 'F:\MS1.txt'
+		Path = 'C:\MS1.txt'
+		Role = 'MemberServer'
      }
  )
 } 

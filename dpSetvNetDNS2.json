@@ -7,7 +7,7 @@
     },
     "DNSServers": {
       "type": "array",
-      "defaultValue": [ "10.0.0.10", "10.0.0.10" ]
+      "defaultValue": [ "10.0.0.10", "10.0.0.11" ]
     },
     "vNet": {
       "type": "string",
@@ -17,29 +17,42 @@
   },
   "variables": {
     // Network
-    "snPrefix": "10.0.0.0/16",
-    "snName01": "[concat('sn', parameters('Deployment'),'-01')]",
-    "snName01Prefix": "10.0.0.0/24",
-    "snName02": "[concat('sn', parameters('Deployment'),'-02')]",
-    "snName02Prefix": "10.0.1.0/24",
+
+    "vNetPrefix-a": "10.0.0.0/16",
+    "vNetPrefix-b": "10.1.0.0/16",
+
+    // 3 Subnets - use the same subnet names in both VNets (a and b)
+    "snFrontEnd-ab": "[concat('sn', parameters('Deployment'),'-FE')]",
+    "snMidTier-ab": "[concat('sn', parameters('Deployment'),'-MT')]",
+    "snBackEnd-ab": "[concat('sn', parameters('Deployment'),'-BE')]",
+
+    // Networka (3 subnets for vneta)
+    "snFrontEnd-a-Prefix": "10.0.0.0/24",
+    "snMidTier-a-Prefix": "10.0.1.0/24",
+    "snBackEnd-a-Prefix": "10.0.2.0/24",
+
+    // Networkb (3 subnets for vnetb)
+    "snFrontEnd-b-Prefix": "10.1.0.0/24",
+    "snMidTier-b-Prefix": "10.1.1.0/24",
+    "snBackEnd-b-Prefix": "10.1.2.0/24",
 
     "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', concat('vn',parameters('Deployment'),parameters('vNet')))]",
-    "SubnetRef": "[concat(variables('VnetID'), '/subnets/', variables('snName01'))]"
+    "SubnetRef": "[concat(variables('VnetID'), '/subnets/', variables('snFrontEnd-ab'))]"
   },
   "resources": [
     {
-      "name": "[concat('vn',Parameters('Deployment'),parameters('vNet'))]",
+      "name": "[concat('vn',parameters('Deployment'),parameters('vNet'))]",
       "type": "Microsoft.Network/virtualNetworks",
       "location": "[resourceGroup().location]",
       "apiVersion": "2015-06-15",
       "dependsOn": [],
       "tags": {
-        "displayName": "vNet"
+        "displayName": "vNeta"
       },
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
-            "[variables('snPrefix')]"
+            "[variables(concat('vNetPrefix',parameters('vNet')))]"
           ]
         },
         "dhcpOptions": {
@@ -51,15 +64,21 @@
         },
         "subnets": [
           {
-            "name": "[variables('snName01')]",
+            "name": "[variables('snFrontEnd-ab')]",
             "properties": {
-              "addressPrefix": "[variables('snName01Prefix')]"
+              "addressPrefix": "[variables(concat('snFrontEnd', parameters('vNet') ,'-Prefix'))]"
             }
           },
           {
-            "name": "[variables('snName02')]",
+            "name": "[variables('snMidTier-ab')]",
             "properties": {
-              "addressPrefix": "[variables('snName02Prefix')]"
+              "addressPrefix": "[variables(concat('snMidTier', parameters('vNet'),'-Prefix'))]"
+            }
+          },
+          {
+            "name": "[variables('snBackEnd-ab')]",
+            "properties": {
+              "addressPrefix": "[variables(concat('snBackEnd', parameters('vNet'),'-Prefix'))]"
             }
           }
         ]

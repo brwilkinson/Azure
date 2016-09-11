@@ -17,6 +17,7 @@
   },
   "variables": {
     // Network
+    "Peer": "[replace('-a-b', parameters('vNet'), '')]",
 
     "vNetPrefix-a": "10.0.0.0/16",
     "vNetPrefix-b": "10.1.0.0/16",
@@ -82,7 +83,27 @@
             }
           }
         ]
-      }
+      },
+      "resources": [
+        {
+          "apiVersion": "2016-06-01",
+          "type": "virtualNetworkPeerings",
+          "name": "VNetbLinkToVNeta",
+          "dependsOn": [
+            "[resourceId('Microsoft.Network/virtualNetworks', concat('vn',parameters('Deployment'),parameters('vNet')))]"
+          ],
+          "location": "[resourceGroup().location]",
+          "properties": {
+            "allowVirtualNetworkAccess": true,
+            "allowForwardedTraffic": false,
+            "allowGatewayTransit": false,
+            "useRemoteGateways": false,
+            "remoteVirtualNetwork": {
+              "id": "[resourceId('Microsoft.Network/virtualNetworks', concat('vn',parameters('Deployment'),variables('Peer')))]"
+            }
+          }
+        }
+      ]
     }
   ]
 }

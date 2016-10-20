@@ -41,7 +41,8 @@
         "dhcpOptions": {
           "dnsServers": [
             "[Parameters('DNSServers')[0]]",
-            "[Parameters('DNSServers')[1]]"
+            "[Parameters('DNSServers')[1]]",
+            "[Parameters('DNSServers')[2]]"
           ]
         },
         "subnets": [
